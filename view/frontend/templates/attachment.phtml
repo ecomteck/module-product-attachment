@@ -1,0 +1,34 @@
+<?php
+/** @var \Ecomteck\ProductAttachment\Block\Attachment $block */
+?>
+<?php if($block->isEnable()): ?>
+    <?php $productId = $block->getCurrentId(); ?>
+    <?php $attachments = $block->getAttachment($productId); ?>
+    <?php $isSize = $block->getConfig('productattachment/general/attachmentsize'); ?>
+    <?php /** @var \Ecomteck\ProductAttachment\Model\ProductAttachment $attachment */ ?>
+    <?php foreach ($attachments as $attachment) : ?>
+        <?php if ($attachment->getActive()) : ?>
+            <div class="product-attachment" style="margin-bottom: 10px;">
+                <?php if ($attachment->getFile() && $block->fileExists($attachment->getFile())) : ?>
+                    <a href="<?php /* @noEscape */ echo $block->getAttachmentUrl($attachment->getFile()); ?>" target="_blank">
+                        <div class="attachment-icon" style="float: left; padding-right: 10px;">
+                         <img src="<?php /* @noEscape */ echo $block->getFileIcon($attachment->getFileExt()) ?>" style="width: 20px"/>
+                        </div>
+                        <?php /* @noEscape */ echo $attachment->getName(); ?>
+                    </a>
+                    <?php if ($isSize) : ?>
+                        <?php $size = '(Size: '.$block->getFileSize($attachment->getFile()).')' ?>
+                        <?php /* @noEscape */ echo __($size); ?>
+                    <?php endif; ?>
+                <?php elseif ($attachment->getUrl()) : ?>
+                    <a href="<?php /* @noEscape */ echo $attachment->getUrl(); ?>" target="_blank" >
+                        <div class="attachment-icon" style="float: left; padding-right: 10px;">
+                            <img src="<?php /* @noEscape */ echo $block->getLinkIcon(); ?>" />
+                        </div>
+                        <?php /* @noEscape */ echo $attachment->getName(); ?>
+                    </a>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+    <?php endforeach; ?>
+<?php endif; ?>

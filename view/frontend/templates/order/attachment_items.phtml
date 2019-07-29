@@ -1,0 +1,44 @@
+<?php
+
+?>
+<?php
+    $attachments = $block->getOrderAttachment();
+?>
+<div class="table-wrapper order-items">
+    <table class="data table table-order-items" id="my-orders-table" summary="<?= /* @escapeNotVerified */ __('Attachments') ?>">
+        <caption class="table-caption"><?= /* @escapeNotVerified */ __('Attachments') ?></caption>
+        <thead>
+        <tr>
+            <th class="col name"><?= /* @escapeNotVerified */ __('Title') ?></th>
+            <th class="col name"><?= /* @escapeNotVerified */ __('File') ?></th>
+            <th class="col sku"><?= /* @escapeNotVerified */ __('Expiry') ?></th>
+            <th class="col price"><?= /* @escapeNotVerified */ __('Remaining Downloads') ?></th>
+        </tr>
+        </thead>
+        <?php foreach ($attachments as $attachment): ?>
+            <?php if ($attachment->getActive()) : ?>
+            <?php if ($attachment->getFile() && $block->fileExists($attachment->getFile())) : ?>
+                <?php $file = $attachment->getFile(); ?>
+                <tbody>
+                <tr id="attachment-item-row-<?= /* @escapeNotVerified */ $attachment->getId() ?>">
+                    <td class="col name title" data-th="<?= $block->escapeHtml(__('Title')) ?>">
+                        <strong class="product name product-item-name"><?= $attachment->getName() ?></strong>
+                    </td>
+                    <td class="col file" data-th="<?= $block->escapeHtml(__('File')) ?>">
+                        <a href="<?php /* @noEscape */ echo $block->getAttachmentUrl($file); ?>" target="_blank">
+                            <div class="attachment-icon" style="float: left; padding-right: 10px;">
+                                <img src="<?php /* @noEscape */ echo $block->getFileIcon($attachment->getFileExt()) ?>" style="width: 20px"/>
+                            </div>
+                            <?php /* @noEscape */ echo $attachment->getName(); ?>
+                        </a>
+                    </td>
+                    <td class="col status" data-th="<?= $block->escapeHtml(__('Status')) ?>">
+                        <?= $attachment->getStatus() ?>
+                    </td>
+                </tr>
+                </tbody>
+            <?php endif; ?>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </table>
+</div>

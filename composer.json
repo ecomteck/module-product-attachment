@@ -1,0 +1,35 @@
+{
+    "name": "ecomteck/module-product-attachment",
+    "description": "Magento 2 Product Attachments extension allows admin to upload numerous file formats: Pdf, Zip, MOV, Excel or Word, etc for enriching maximally informative product pages. Grasp customers’ attention by adding eye-catching icons to attachment files thus customers recognize the file type they open or download.",
+    "type": "magento2-module",
+    "keywords": [
+        "ecomteck",
+        "product attachments",
+        "Magento 2 product attachments extension",
+        "Attach files for Magento 2",
+        "Magento 2 product attachments users",
+        "Product Attachments for Magento 2 free",
+        "product attachments module",
+        "Magento 2 downloadable product attachments"
+    ],
+    "version": "1.1.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "Ecomteck",
+            "email": "ecomteck@gmail.com",
+            "role": "Magento 2 Extension Solutions"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Ecomteck\\ProductAttachment\\": ""
+        }
+    }
+}

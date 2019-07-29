@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Ecomteck_ProductAttachment::top_level" title="Product Attachments" module="Ecomteck_ProductAttachment" sortOrder="30" resource="Ecomteck_ProductAttachment::manage" parent="Magento_Catalog::catalog"/>
+        <add id="Ecomteck_ProductAttachment::productattachment_manage" title="Manage Attachments" module="Ecomteck_ProductAttachment" sortOrder="10" parent="Ecomteck_ProductAttachment::top_level" action="productattachment/index/" resource="Ecomteck_ProductAttachment::manage"/>
+        <add id="Ecomteck_ProductAttachment::prince_productattachment_fileicon" action="productattachment/fileicon/index" module="Ecomteck_ProductAttachment" parent="Ecomteck_ProductAttachment::top_level" resource="Ecomteck_ProductAttachment::manage" sortOrder="20" title="Manage Icons"/>
+    </menu>
+</config>

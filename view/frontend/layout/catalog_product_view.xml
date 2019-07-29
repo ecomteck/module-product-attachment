@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="alert.urls">
+            <block class="Ecomteck\ProductAttachment\Block\Attachment" name="productattachment" as="productattachment" template="Ecomteck_ProductAttachment::attachment.phtml" cacheable="false"  ifconfig="productattachment/general/productdetail" />
+        </referenceContainer>
+        <referenceBlock name="product.info.details">
+          <block class="Ecomteck\ProductAttachment\Block\Attachment" name="productattachment.tab" as="productattachment" template="Ecomteck_ProductAttachment::attachment.phtml" cacheable="false"  group="detailed_info" ifconfig="productattachment/general/producttab">
+             <arguments>
+                <argument name="title" xsi:type="helper" helper="Ecomteck\ProductAttachment\Block\Attachment::getTabName"></argument>
+             </arguments>
+          </block>
+        </referenceBlock>
+    </body>
+</page>

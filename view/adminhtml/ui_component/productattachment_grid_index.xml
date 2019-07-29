@@ -1,0 +1,177 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="context" xsi:type="configurableObject">
+		<argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\Context</argument>
+		<argument name="namespace" xsi:type="string">productattachment_grid_index</argument>
+	</argument>
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">productattachment_grid_index.productattachment_grid_index_data_source</item>
+			<item name="deps" xsi:type="string">productattachment_grid_index.productattachment_grid_index_data_source</item>
+		</item>
+		<item name="spinner" xsi:type="string">productattachment_grid_index_columns</item>
+		<item name="buttons" xsi:type="array">
+			<item name="add" xsi:type="array">
+				<item name="name" xsi:type="string">add</item>
+				<item name="label" xsi:type="string">Add New Attachment</item>
+				<item name="class" xsi:type="string">primary</item>
+				<item name="url" xsi:type="string">*/*/new</item>
+			</item>
+		</item>
+	</argument>
+	<dataSource name="productattachment_grid_index_data_source">
+		<argument name="dataProvider" xsi:type="configurableObject">
+			<argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+			<argument name="name" xsi:type="string">productattachment_grid_index_data_source</argument>
+			<argument name="primaryFieldName" xsi:type="string">productattach_id</argument>
+			<argument name="requestFieldName" xsi:type="string">id</argument>
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+					<item name="update_url" path="mui/index/render" xsi:type="url"/>
+					<item name="storageConfig" xsi:type="array">
+						<item name="indexField" xsi:type="string">productattach_id</item>
+					</item>
+				</item>
+			</argument>
+		</argument>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		 <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="template" xsi:type="string">ui/grid/toolbar</item>
+            </item>
+        </argument>
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="sticky" xsi:type="boolean">true</item>
+			</item>
+		</argument>
+		<massaction name="listing_massaction">
+		    <argument name="data" xsi:type="array">
+		        <item name="config" xsi:type="array">
+		            <item name="selectProvider" xsi:type="string">productattachment_grid_index.productattachment_grid_index.productattachment_grid_index_columns.ids</item>
+		            <item name="indexField" xsi:type="string">productattach_id</item>
+		        </item>
+		    </argument>
+		    <action name="delete">
+		        <argument name="data" xsi:type="array">
+		            <item name="config" xsi:type="array">
+		                <item name="type" xsi:type="string">delete</item>
+		                <item name="label" xsi:type="string" translate="true">Delete Attachment(s)</item>
+		                <item name="url" xsi:type="url" path="productattachment/index/massDelete"/>
+		                <item name="confirm" xsi:type="array">
+		                    <item name="title" xsi:type="string" translate="true">Delete Attachment(s)</item>
+		                    <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected Attachment(s)?</item>
+		                </item>
+		            </item>
+		        </argument>
+		    </action>
+		</massaction>
+		<bookmark name="bookmark"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="productattachment_grid_index_columns">
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="childDefaults" xsi:type="array">
+					<item name="fieldAction" xsi:type="array">
+						<item name="provider" xsi:type="string">productattachment_grid_index.productattachment_grid_index.productattachment_grid_index_columns_editor</item>
+						<item name="target" xsi:type="string">startEdit</item>
+						<item name="params" xsi:type="array">
+							<item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+							<item name="1" xsi:type="boolean">true</item>
+						</item>
+					</item>
+				</item>
+			</item>
+		</argument>
+		<selectionsColumn name="ids">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="indexField" xsi:type="string">productattach_id</item>
+				</item>
+			</argument>
+		</selectionsColumn>
+		<column name="productattach_id">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">ID</item>
+				</item>
+			</argument>
+		</column>
+		<column name="name">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">Name</item>
+				</item>
+			</argument>
+		</column>
+		<column name="file" class="Ecomteck\ProductAttachment\Ui\Component\Listing\Column\File">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">File</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+				</item>
+			</argument>
+		</column>
+		<column name="customer_group" class="Ecomteck\ProductAttachment\Ui\Component\Listing\Column\CustomerGroup">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Magento\Customer\Model\Config\Source\Group</item>
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">select</item>
+            		<item name="dataType" xsi:type="string">multiselect</item>
+					<item name="label" translate="true" xsi:type="string">Customer Group</item>
+				</item>
+			</argument>
+		</column>
+		<column name="store" class="Ecomteck\ProductAttachment\Ui\Component\Listing\Column\Store">
+			<argument name="data" xsi:type="array">
+			<item name="options" xsi:type="object">Magento\Store\Model\System\Store</item>
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">select</item>
+            		<item name="dataType" xsi:type="string">multiselect</item>
+					<item name="label" translate="true" xsi:type="string">Store</item>
+				</item>
+			</argument>
+		</column>
+		<column name="active" class="Ecomteck\ProductAttachment\Ui\Component\Listing\Column\Status">
+            <argument name="data" xsi:type="array">
+            <item name="options" xsi:type="object">Ecomteck\ProductAttachment\Model\Config\Source\Status</item>
+                <item name="config" xsi:type="array">
+                	<item name="filter" xsi:type="string">select</item>
+            		<item name="dataType" xsi:type="string">multiselect</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                </item>
+            </argument>
+        </column>
+		<column name="visible_scope">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">Visible Scope</item>
+				</item>
+			</argument>
+		</column>
+		<actionsColumn class="Ecomteck\ProductAttachment\Ui\Component\Listing\Column\Download" name="download">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="indexField" xsi:type="string">file</item>
+					<item name="label" xsi:type="string">File Download</item>
+				</item>
+			</argument>
+		</actionsColumn>
+		<actionsColumn class="Ecomteck\ProductAttachment\Ui\Component\Listing\Column\ProductAttachmentActions" name="actions">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="indexField" xsi:type="string">productattach_id</item>
+				</item>
+			</argument>
+		</actionsColumn>
+	</columns>
+</listing>

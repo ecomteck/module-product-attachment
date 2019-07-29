@@ -1,0 +1,13 @@
+<?php
+
+?>
+<div class="order-details-items attachment">
+    <?= $block->getChildHtml('attachment_items') ?>
+    <div class="actions-toolbar">
+        <div class="secondary">
+            <a href="<?= /* @escapeNotVerified */ $block->getBackUrl() ?>" class="action back">
+                <span><?= /* @escapeNotVerified */ $block->getBackTitle() ?></span>
+            </a>
+        </div>
+    </div>
+</div>
