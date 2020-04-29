@@ -8,6 +8,7 @@
                 <producttab>1</producttab>
                 <attachmentsize>1</attachmentsize>
                 <tabname>Product Attachment</tabname>
+                <upload_maxsize>2</upload_maxsize>
             </general>
         </productattachment>
     </default>

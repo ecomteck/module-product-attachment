@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <tab id="ecomteck" translate="label" sortOrder="400">
-            <label><![CDATA[<a href="http://ecomteck.com" target="_BLANK" title=""Magento Marketplace, Opencart Marketplace, Magento 2 Extension, Free Magento Extension, Opencart Advanced Reports">ecomteck.com</a>]]></label>
+            <label>Ecomteck Extensions</label>
         </tab>
         <section id="productattachment" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
@@ -29,6 +29,10 @@
                 </field>
                 <field id="tabname" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Attachment Tab Label</label>
+                </field>
+                <field id="upload_maxsize" translate="label" type="text" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Max size upload file</label>
+                    <comment>Input number (Mb) of maximum upload file size. Example: 2 (Mb)</comment>
                 </field>
             </group>
         </section>

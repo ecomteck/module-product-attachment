@@ -87,6 +87,8 @@ class ImageUploader
      */
     public $allowedExtensions;
 
+    protected $helperData;
+
     /**
      * ImageUploader constructor
      *
@@ -95,6 +97,7 @@ class ImageUploader
      * @param \Magento\MediaStorage\Model\File\UploaderFactory $uploaderFactory
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Psr\Log\LoggerInterface $logger
+     * @param \Ecomteck\ProductAttachment\Helper\Data $helperData
      * @throws \Magento\Framework\Exception\FileSystemException
      */
     public function __construct(
@@ -102,7 +105,8 @@ class ImageUploader
         \Magento\Framework\Filesystem $filesystem,
         \Magento\MediaStorage\Model\File\UploaderFactory $uploaderFactory,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Psr\Log\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger,
+        \Ecomteck\ProductAttachment\Helper\Data $helperData
     ) {
         $this->coreFileStorageDatabase = $coreFileStorageDatabase;
         $this->mediaDirectory = $filesystem->getDirectoryWrite(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
@@ -112,6 +116,7 @@ class ImageUploader
         $this->baseTmpPath = "fileicon/tmp/icon";
         $this->basePath = "fileicon/icon";
         $this->allowedExtensions= ['jpg', 'jpeg', 'gif', 'png'];
+        $this->helperData = $helperData;
     }
 
     /**
@@ -245,10 +250,12 @@ class ImageUploader
         $uploader->setAllowedExtensions($this->getAllowedExtensions());
         $uploader->setAllowRenameFiles(true);
         $size = $uploader->getFileSize();
-
-        if($size > 20000) {
+        $upload_maxsize = $this->helperData->getConfig("general/upload_maxsize");//mb value
+        $upload_maxsize = $upload_maxsize?(float)$upload_maxsize:2;
+        $max_file_size = (float)$upload_maxsize * 1024 * 1024;
+        if($size > $max_file_size) {
             throw new \Magento\Framework\Exception\LocalizedException(
-                __('File size must be less than 20KB. Large icon images will effect page load time.')
+                __('File size must be less than %1MB. Large icon images will effect page load time.',$upload_maxsize)
             );
         }
 

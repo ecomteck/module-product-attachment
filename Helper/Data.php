@@ -340,4 +340,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return round(pow(1024, $base - floor($base)), 1) . $suffix[$f_base];
     }
 
+    public function getConfig($key, $store = null)
+    {
+        $store = $this->storeManager->getStore($store);
+        $result = $this->scopeConfig->getValue(
+            'productattachment/' . $key,
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+            $store
+        );
+        return $result;
+    }
 }
