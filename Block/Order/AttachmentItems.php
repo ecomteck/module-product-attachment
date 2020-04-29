@@ -159,14 +159,6 @@ class AttachmentItems extends \Magento\Framework\View\Element\Template
         $currentOrderItems = $currentOrder->getAllVisibleItems();
 
         $collection = $this->getCollection();
-//
-//        $collection->addFieldToFilter(
-//            'customer_group',
-//            [
-//                ['null' => true],
-//                ['finset' => $this->getCustomerId()]
-//            ]
-//        );
 
         $collection->addFieldToFilter(
             'store',

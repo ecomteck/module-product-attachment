@@ -1,8 +1,6 @@
 <?php
-
-?>
-<?php
-    $attachments = $block->getOrderAttachment();
+$attachments = $block->getOrderAttachment();
+if($attachments){
 ?>
 <div class="table-wrapper order-items">
     <table class="data table table-order-items" id="my-orders-table" summary="<?= /* @escapeNotVerified */ __('Attachments') ?>">
@@ -11,8 +9,6 @@
         <tr>
             <th class="col name"><?= /* @escapeNotVerified */ __('Title') ?></th>
             <th class="col name"><?= /* @escapeNotVerified */ __('File') ?></th>
-            <th class="col sku"><?= /* @escapeNotVerified */ __('Expiry') ?></th>
-            <th class="col price"><?= /* @escapeNotVerified */ __('Remaining Downloads') ?></th>
         </tr>
         </thead>
         <?php foreach ($attachments as $attachment): ?>
@@ -32,9 +28,6 @@
                             <?php /* @noEscape */ echo $attachment->getName(); ?>
                         </a>
                     </td>
-                    <td class="col status" data-th="<?= $block->escapeHtml(__('Status')) ?>">
-                        <?= $attachment->getStatus() ?>
-                    </td>
                 </tr>
                 </tbody>
             <?php endif; ?>
@@ -42,3 +35,4 @@
         <?php endforeach; ?>
     </table>
 </div>
+<?php } else { echo __("Not have download files or should complete the order!"); } ?>
