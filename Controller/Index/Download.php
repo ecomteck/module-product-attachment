@@ -59,6 +59,7 @@ class Download extends \Magento\Framework\App\Action\Action
      */
     public function execute()
     {
+        $file_key = $this->getRequest()->getParam("file");
         $this->_view->loadLayout();
         $this->_view->getLayout()->initMessages();
         $this->_view->getPage()->getConfig()->getTitle()->set(__('Site Product Attachment'));

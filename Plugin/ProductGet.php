@@ -41,23 +41,18 @@ class ProductGet
         \Magento\Catalog\Api\ProductRepositoryInterface $subject,
         \Magento\Catalog\Api\Data\ProductInterface $product
     ) {
-        if($product->getExtensionAttributes() && $product->getExtensionAttributes()->getAttachments()) {
-            return $product;
-        }
-
         if(!$product->getExtensionAttributes()) {
             $productExtension = $this->productExtensionFactory->create();
             $product->setExtensionAttributes($productExtension);
         }
+        $extensionAttributes = $product->getExtensionAttributes();
 
         $attachmentIds = [];
         $attachments = $this->productAttachment->getAttachment($product->getId());
         foreach ($attachments as $attachment) {
             $attachmentIds[] = $attachment->getId();
         }
-
-        $product->getExtensionAttributes()->setAttachments($attachmentIds);
-
+        $extensionAttributes->setAttachments($attachmentIds);
         return $product;
     }
 }
